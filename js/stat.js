@@ -8,9 +8,10 @@ var shadowOffset = 10;
 
 var contentX = 150;
 var columnWidthOffset = 90;
-var shrinkRatio = 0;
+var histogramHeight = 150;
 
 window.renderStatistics = function (ctx, names, times) {
+  var shrinkRatio = Math.max.apply(null, times) / histogramHeight;
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.fillRect(cloudX + shadowOffset, cloudY + shadowOffset, cloudWidth, cloudHeight);
   ctx.fillStyle = '#fff';
@@ -19,12 +20,7 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.font = '16px PT Mono';
   ctx.fillText('Ура вы победили!', 240, 30);
   ctx.fillText('Список результатов:', 223, 55);
-  var sum = 0;
-  for (var i = 0; i < times.length; i++) {
-    sum += times[i];
-  }
-  shrinkRatio = sum / times.length / 120;
-  for (i = 0; i < names.length; i++) {
+  for (var i = 0; i < names.length; i++) {
     ctx.fillStyle = '#000';
     ctx.fillText(Math.floor(times[i]), contentX + (i * columnWidthOffset), 235);
     ctx.fillText(names[i], contentX + (i * columnWidthOffset), 250);
