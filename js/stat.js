@@ -36,7 +36,7 @@ window.renderStatistics = function (ctx, names, times) {
     var time = times[i];
     ctx.fillStyle = COLOR_BLACK;
     ctx.fillText(Math.floor(time), xCoord, 235);
-    ctx.fillText(name, CONTENT_X + (i * COLUMN_WITDH_OFFSET), 250);
+    ctx.fillText(name, xCoord, 250);
     ctx.fillStyle = name === TEXTLINE3_CONTENT ? RGBA_RED : 'rgba(0, 0, 255, ' + Math.random() + ')';
     ctx.fillRect(xCoord, 220, COLUMN_WIDTH, -(time / shrinkRatio));
   });
