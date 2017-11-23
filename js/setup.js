@@ -17,7 +17,7 @@ var renderWizard = function (wizard) {
   wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
   wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
   return wizardElement;
-}
+};
 
 var fragment = document.createDocumentFragment();
 
