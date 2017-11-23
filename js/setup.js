@@ -14,7 +14,7 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template').c
 
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
-  wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
+  wizardElement.querySelector('.setup-similar-label').textContent = wizard.name + ' ' + wizard.surname;
   wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
   return wizardElement;
 };
