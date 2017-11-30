@@ -92,5 +92,5 @@ wizardEyes.addEventListener('click', function () {
 });
 
 fireball.addEventListener('click', function () {
-  changeColor(fireball, FIREBALL_COLORS);
+  fireball.style.backgroundColor = FIREBALL_COLORS[Math.floor(Math.random() * FIREBALL_COLORS.length)];
 });
