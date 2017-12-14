@@ -1,13 +1,6 @@
 'use strict';
 
 (function () {
-  var setup = document.querySelector('.setup');
-  var setupOpen = document.querySelector('.setup-open');
-  var setupClose = setup.querySelector('.setup-close');
-  var wizardCoat = setup.querySelector('.setup-wizard .wizard-coat');
-  var wizardEyes = setup.querySelector('.setup-wizard .wizard-eyes');
-  var fireball = setup.querySelector('.setup-fireball-wrap');
-
   var ENTER_KEYCODE = 13;
   var ESC_KEYCODE = 27;
   var NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
@@ -15,6 +8,13 @@
   var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
   var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
   var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+
+  var setup = document.querySelector('.setup');
+  var setupOpen = document.querySelector('.setup-open');
+  var setupClose = setup.querySelector('.setup-close');
+  var wizardCoat = setup.querySelector('.setup-wizard .wizard-coat');
+  var wizardEyes = setup.querySelector('.setup-wizard .wizard-eyes');
+  var fireball = setup.querySelector('.setup-fireball-wrap');
 
   var similarListElement = setup.querySelector('.setup-similar-list');
 
