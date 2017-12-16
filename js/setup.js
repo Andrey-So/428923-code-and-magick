@@ -9,15 +9,14 @@
   var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
   var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
-  var setup = document.querySelector('.setup');
+  window.setup = document.querySelector('.setup');
   var setupOpen = document.querySelector('.setup-open');
-  var setupClose = setup.querySelector('.setup-close');
-  var wizardCoat = setup.querySelector('.setup-wizard .wizard-coat');
-  var wizardEyes = setup.querySelector('.setup-wizard .wizard-eyes');
-  var fireball = setup.querySelector('.setup-fireball-wrap');
-  var similarListElement = setup.querySelector('.setup-similar-list');
+  var setupClose = window.setup.querySelector('.setup-close');
+  var wizardCoat = window.setup.querySelector('.setup-wizard .wizard-coat');
+  var wizardEyes = window.setup.querySelector('.setup-wizard .wizard-eyes');
+  var fireball = window.setup.querySelector('.setup-fireball-wrap');
+  var similarListElement = window.setup.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
-  var dialogHandle = setup.querySelector('.setup-user-pic');
   var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name + ' ' + wizard.surname;
@@ -27,7 +26,7 @@
   };
   var fragment = document.createDocumentFragment();
   var similarCharacters = [];
-  var defaultSetupCoords;
+  window.defaultSetupCoords = {};
   for (var i = 0; i < 4; i++) {
     similarCharacters.push({
       name: NAMES[Math.floor(Math.random() * NAMES.length)],
@@ -38,7 +37,7 @@
     fragment.appendChild(renderWizard(similarCharacters[i]));
   }
   similarListElement.appendChild(fragment);
-  setup.querySelector('.setup-similar').classList.remove('hidden');
+  window.setup.querySelector('.setup-similar').classList.remove('hidden');
 
   var onSetupEscPress = function (evt) {
     if (evt.keyCode === ESC_KEYCODE) {
@@ -47,16 +46,16 @@
   };
 
   var openSetup = function () {
-    setup.classList.remove('hidden');
+    window.setup.classList.remove('hidden');
     document.addEventListener('keydown', onSetupEscPress);
-    if (defaultSetupCoords != undefined) {
-      setup.style.left = defaultSetupCoords.x;
-      setup.style.top = defaultSetupCoords.y;
+    if (window.defaultSetupCoords.x !== undefined) {
+      window.setup.style.left = window.defaultSetupCoords.x;
+      window.setup.style.top = window.defaultSetupCoords.y;
     }
   };
 
   var closeSetup = function () {
-    setup.classList.add('hidden');
+    window.setup.classList.add('hidden');
     document.removeEventListener('keydown', onSetupEscPress);
   };
 
@@ -94,47 +93,5 @@
 
   fireball.addEventListener('click', function () {
     fireball.style.backgroundColor = FIREBALL_COLORS[Math.floor(Math.random() * FIREBALL_COLORS.length)];
-  });
-
-  dialogHandle.addEventListener('mousedown', function (downEvt) {
-
-    downEvt.preventDefault();
-    var startCoords = {
-      x: downEvt.clientX,
-      y: downEvt.clientY
-    };
-
-    var onMouseMove = function (moveEvt) {
-      moveEvt.preventDefault();
-
-      var shift = {
-        x: startCoords.x - moveEvt.clientX,
-        y: startCoords.y - moveEvt.clientY
-      };
-
-      startCoords = {
-        x: moveEvt.clientX,
-        y: moveEvt.clientY
-      };
-
-      setup.style.top = (setup.offsetTop - shift.y) + 'px';
-      setup.style.left = (setup.offsetLeft - shift.x) + 'px';
-      if (defaultSetupCoords === undefined) {
-        defaultSetupCoords = {
-          x: setup.style.left,
-          y: setup.style.top
-        };
-      }
-    };
-
-    var onMouseUp = function (upEvt) {
-      upEvt.preventDefault();
-
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
-    };
-
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
   });
 })();
