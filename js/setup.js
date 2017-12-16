@@ -94,4 +94,38 @@
   fireball.addEventListener('click', function () {
     fireball.style.backgroundColor = FIREBALL_COLORS[Math.floor(Math.random() * FIREBALL_COLORS.length)];
   });
+
+  var shopElement = document.querySelector('.setup-artifacts-shop');
+  var targetElement = document.querySelector('.setup-artifacts');
+  var draggedItem = null;
+
+  shopElement.addEventListener('dragstart', function (startEvt) {
+    if (startEvt.target.tagName.toLowerCase() === 'img') {
+      draggedItem = startEvt.target;
+      startEvt.dataTransfer.setData('text/plain', startEvt.target.alt);
+      targetElement.style.outline = '2px dashed red';
+    }
+  });
+
+  targetElement.addEventListener('dragover', function (dragEvt) {
+    dragEvt.preventDefault();
+    return false;
+  });
+
+  targetElement.addEventListener('drop', function (dropEvt) {
+    dropEvt.preventDefault();
+    dropEvt.target.style.backgroundColor = '';
+    targetElement.style.outline = 'none';
+    dropEvt.target.appendChild(draggedItem);
+  });
+
+  targetElement.addEventListener('dragenter', function (enterEvt) {
+    enterEvt.preventDefault();
+    enterEvt.target.style.backgroundColor = 'yellow';
+  });
+
+  targetElement.addEventListener('dragleave', function (leaveEvt) {
+    leaveEvt.preventDefault();
+    leaveEvt.target.style.backgroundColor = '';
+  });
 })();
