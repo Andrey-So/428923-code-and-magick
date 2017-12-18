@@ -25,7 +25,7 @@
 
       window.setup.style.top = (window.setup.offsetTop - shift.y) + 'px';
       window.setup.style.left = (window.setup.offsetLeft - shift.x) + 'px';
-      if (window.defaultSetupCoords.x === undefined) {
+      if (!window.defaultSetupCoords.x) {
         window.defaultSetupCoords = {
           x: window.setup.style.left,
           y: window.setup.style.top

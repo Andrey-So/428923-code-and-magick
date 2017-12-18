@@ -48,7 +48,7 @@
   var openSetup = function () {
     window.setup.classList.remove('hidden');
     document.addEventListener('keydown', onSetupEscPress);
-    if (window.defaultSetupCoords.x !== undefined) {
+    if (window.defaultSetupCoords.x) {
       window.setup.style.left = window.defaultSetupCoords.x;
       window.setup.style.top = window.defaultSetupCoords.y;
     }
