@@ -59,8 +59,12 @@
     document.removeEventListener('keydown', onSetupEscPress);
   };
 
-  var changeColor = function (subject, colors) {
-    subject.style.fill = colors[Math.floor(Math.random() * colors.length)];
+  var fillBackground = function (subject, color) {
+    subject.style.backgroundColor = color;
+  };
+
+  var fillElement = function (subject, color) {
+    subject.style.fill = color;
   };
 
   setupOpen.addEventListener('click', function () {
@@ -84,15 +88,15 @@
   });
 
   wizardCoat.addEventListener('click', function () {
-    changeColor(wizardCoat, COAT_COLORS);
+    window.colorizeElement(wizardCoat, COAT_COLORS, fillElement);
   });
 
   wizardEyes.addEventListener('click', function () {
-    changeColor(wizardEyes, EYES_COLORS);
+    window.colorizeElement(wizardEyes, EYES_COLORS, fillElement);
   });
 
   fireball.addEventListener('click', function () {
-    fireball.style.backgroundColor = FIREBALL_COLORS[Math.floor(Math.random() * FIREBALL_COLORS.length)];
+    window.colorizeElement(fireball, FIREBALL_COLORS, fillBackground);
   });
 
   var shopElement = document.querySelector('.setup-artifacts-shop');
